@@ -17,8 +17,8 @@ export default {
      * @description api请求基础路径
      */
     baseUrl: {
-        dev: 'http://www.perfume.com/',
-        pro: 'http://www.perfume.com/'
+        dev: 'http://admin.perfume.com/api/',
+        pro: 'http://admin.perfume.com/api/'
     },
     /**
      * @description 默认打开的首页的路由name值，默认为home

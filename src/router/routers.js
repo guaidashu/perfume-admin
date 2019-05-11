@@ -17,69 +17,88 @@ import Main from '@/components/main'
  */
 
 export default [
-  {
-    path: '/login',
-    name: 'login',
-    meta: {
-      title: 'Login - 登录',
-      hideInMenu: true
-    },
-    component: () => import('@/view/login/login.vue')
-  },
-  {
-    path: '/',
-    name: '_home',
-    redirect: '/home',
-    component: Main,
-    meta: {
-      hideInMenu: true,
-      notCache: true
-    },
-    children: [
-      {
-        path: '/home',
-        name: 'home',
+    {
+        path: '/login',
+        name: 'login',
         meta: {
-          hideInMenu: true,
-          title: '首页',
-          notCache: true,
-          icon: 'md-home'
+            title: 'Login - 登录',
+            hideInMenu: true
         },
-        component: () => import('@/view/single-page/home')
-      }
-    ]
-  },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
+        component: () => import('@/view/login/login.vue')
+    },
+    {
+        path: '/',
+        name: '_home',
+        redirect: '/home',
+        component: Main,
+        meta: {
+            hideInMenu: true,
+            notCache: true
+        },
+        children: [
+            {
+                path: '/home',
+                name: 'home',
+                meta: {
+                    hideInMenu: true,
+                    title: '首页',
+                    notCache: true,
+                    icon: 'md-home'
+                },
+                component: () => import('@/view/single-page/home')
+            }
+        ]
+    },
+    {
+        path: '/goods',
+        name: 'goods',
+        meta: {
+            title: "商品"
+        },
+        component: Main,
+        children: [
+            {
+                path: 'goods_manager',
+                name: 'goods_manager',
+                meta: {
+                    icon: 'md-home',
+                    title: "商品管理"
+                },
+                component: () => import('@/view/goods/manager')
+            }
+        ]
+    },
+    {
+        path: '',
+        name: 'doc',
+        meta: {
+            title: '文档',
+            href: 'https://lison16.github.io/iview-admin-doc/#/',
+            icon: 'ios-book'
+        }
+    },
+    {
+        path: '/401',
+        name: 'error_401',
+        meta: {
+            hideInMenu: true
+        },
+        component: () => import('@/view/error-page/401.vue')
+    },
+    {
+        path: '/500',
+        name: 'error_500',
+        meta: {
+            hideInMenu: true
+        },
+        component: () => import('@/view/error-page/500.vue')
+    },
+    {
+        path: '*',
+        name: 'error_404',
+        meta: {
+            hideInMenu: true
+        },
+        component: () => import('@/view/error-page/404.vue')
     }
-  },
-  {
-    path: '/401',
-    name: 'error_401',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/401.vue')
-  },
-  {
-    path: '/500',
-    name: 'error_500',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/500.vue')
-  },
-  {
-    path: '*',
-    name: 'error_404',
-    meta: {
-      hideInMenu: true
-    },
-    component: () => import('@/view/error-page/404.vue')
-  }
 ]

@@ -40,7 +40,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://www.perfume.com/api/',
+                target: 'http://admin.perfume.com/api/',
                 ws: true,
                 changeOrigin: true,
                 pathRewrite: {

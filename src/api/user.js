@@ -2,7 +2,7 @@ import axios from '@/libs/api.request'
 
 export const login = (post) => {
     return axios.request({
-        url: 'api/admin/users/login',
+        url: 'admin/users/login',
         data: post,
         method: 'post'
     })

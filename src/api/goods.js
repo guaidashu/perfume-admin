@@ -1,13 +1,17 @@
 import axios from '@/libs/api.request'
 
 export const getGoodsInfo = (param) => {
-    return axios.request({ url: 'admin/goods/getGoodsInfo', params: param, method: 'get' })
+    return axios.request({url: 'admin/goods/getGoodsInfo', params: param, method: 'get'})
 }
 
 export const addGoods = (post) => {
-    return axios.request({ url: 'admin/goods/addGoods', data: post, method: 'post' })
+    return axios.request({url: 'admin/goods/addGoods', data: post, method: 'post'})
 }
 
 export const deleteGoods = (post) => {
-    return axios.request({ url: 'admin/goods/deleteGoods', data: post, method: 'post' })
+    return axios.request({url: 'admin/goods/deleteGoods', data: post, method: 'post'})
+}
+
+export const updateGoods = (post) => {
+    return axios.request({url: "admin/goods/updateGoods", data: post, method: 'post'})
 }

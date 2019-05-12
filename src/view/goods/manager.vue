@@ -21,9 +21,9 @@
             </div>
         </Modal>
         <Modal v-model="updateModal" title="修改商品信息">
-            <upload-goods :product-info="productInfo" @init="init" ref="updateGoods"></upload-goods>
+            <upload-goods :product-info="productInfo" @close="closeModal('update')" @init="init" ref="updateGoods"></upload-goods>
             <div slot="footer">
-                <Button type="primary" size="large" @click="uploadGoods">确认修改</Button>
+                <Button type="primary" size="large" @click="updateGoods">确认修改</Button>
                 <Button type="error" size="large" @click="closeModal('update')">关闭</Button>
             </div>
         </Modal>
@@ -111,8 +111,8 @@
             addGoods () {
                 this.$refs.uploadGoods.addGoods()
             },
-            uploadGoods() {
-                this.$refs.updateGoods.uploadGoods()
+            updateGoods() {
+                this.$refs.updateGoods.updateGoods()
             }
         },
         watch: {

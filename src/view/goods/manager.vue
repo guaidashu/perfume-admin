@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import uploadGoods from './comonents/uploadGoods'
+    import uploadGoods from './components/uploadGoods'
     import { deleteGoods, getGoodsInfo } from '../../api/goods'
 
     export default {

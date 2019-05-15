@@ -1,4 +1,5 @@
 import Main from '@/components/main'
+import beforeClose from './before-close'
 
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
@@ -29,7 +30,7 @@ export default [
     {
         path: '/',
         name: '_home',
-        redirect: '/home',
+        redirect: '/goods/goods_manager',
         component: Main,
         meta: {
             hideInMenu: true,
@@ -61,22 +62,43 @@ export default [
                 path: 'goods_manager',
                 name: 'goods_manager',
                 meta: {
-                    icon: 'md-home',
-                    title: "商品管理"
+                    icon: 'md-cart',
+                    title: "商品管理",
+                    beforeCloseName: 'before_close_normal'
                 },
                 component: () => import('@/view/goods/manager')
             }
         ]
     },
     {
-        path: '',
-        name: 'doc',
+        path: '/users',
+        name: 'users',
         meta: {
-            title: '文档',
-            href: 'https://lison16.github.io/iview-admin-doc/#/',
-            icon: 'ios-book'
-        }
+            title: '用户'
+        },
+        component: Main,
+        children: [
+            {
+                path: 'users_manager',
+                name: 'users_manager',
+                meta: {
+                    icon: 'md-person',
+                    title: '用户管理',
+                    beforeCloseName: 'before_close_normal'
+                },
+                component: () => import('@/view/users/manager')
+            }
+        ]
     },
+    // {
+    //     path: '',
+    //     name: 'doc',
+    //     meta: {
+    //         title: '文档',
+    //         href: 'https://lison16.github.io/iview-admin-doc/#/',
+    //         icon: 'ios-book'
+    //     }
+    // },
     {
         path: '/401',
         name: 'error_401',

@@ -3,5 +3,7 @@ export default {
     login: 'Login',
     doc: 'Document1',
     goods_manager: 'goods manager',
-    goods: 'goods'
+    goods: 'goods',
+    users_manager: 'users manager',
+    users: 'users'
 }

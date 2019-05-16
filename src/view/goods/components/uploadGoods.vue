@@ -21,18 +21,18 @@
             </div>
         </div>
         <Upload
-                ref="upload"
-                :show-upload-list="false"
-                :on-success="handleSuccess"
-                :format="['jpg','jpeg','png']"
-                :max-size="2048"
-                :on-format-error="handleFormatError"
-                :on-exceeded-size="handleMaxSize"
-                :before-upload="handleBeforeUpload"
-                multiple
-                type="drag"
-                action="/api/admin/goods/uploadImage"
-                style="display: inline-block;width:58px;">
+            ref="upload"
+            :show-upload-list="false"
+            :on-success="handleSuccess"
+            :format="['jpg','jpeg','png']"
+            :max-size="2048"
+            :on-format-error="handleFormatError"
+            :on-exceeded-size="handleMaxSize"
+            :before-upload="handleBeforeUpload"
+            multiple
+            type="drag"
+            action="/api/admin/goods/uploadImage"
+            style="display: inline-block;width:58px;">
             <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="ios-camera" size="20"></Icon>
             </div>
@@ -44,20 +44,24 @@
 </template>
 
 <script>
-    import {addGoods, updateGoods} from '../../../api/goods'
+    import { addGoods, updateGoods } from '../../../api/goods'
 
     export default {
         props: ['productInfo'],
         name: 'uploadGoods',
-        data() {
+        data () {
             const validateProductName = (rule, value, callback) => {
                 if (value === '') {
                     callback(new Error('请输入商品名'))
+                } else {
+                    callback()
                 }
             }
             const validateSalePrice = (rule, value, callback) => {
                 if (value <= 0) {
                     callback(new Error('商品价格不能小于或等于0'))
+                } else {
+                    callback()
                 }
             }
             return {
@@ -70,10 +74,10 @@
                 },
                 formRule: {
                     productName: [
-                        {validator: validateProductName, trigger: 'blur'}
+                        { validator: validateProductName, trigger: 'blur' }
                     ],
                     salePrice: [
-                        {validator: validateSalePrice, trigger: 'blur'}
+                        { validator: validateSalePrice, trigger: 'blur' }
                     ]
                 },
                 defaultList: [],
@@ -83,15 +87,15 @@
             }
         },
         methods: {
-            handleView(name) {
+            handleView (name) {
                 this.imgName = name
                 this.visible = true
             },
-            handleRemove(file) {
+            handleRemove (file) {
                 const fileList = this.$refs.upload.fileList
                 this.$refs.upload.fileList.splice(fileList.indexOf(file), 1)
             },
-            handleSuccess(res, file) {
+            handleSuccess (res, file) {
                 file.url = '/api/upload/' + res.result.filePath
                 file.name = res.result.fileName
                 this.uploadList = this.$refs.upload.fileList
@@ -102,19 +106,19 @@
                     }
                 ]
             },
-            handleFormatError(file) {
+            handleFormatError (file) {
                 this.$Notice.warning({
                     title: 'The file format is incorrect',
                     desc: 'File format of ' + file.name + ' is incorrect, please select jpg or png.'
                 })
             },
-            handleMaxSize(file) {
+            handleMaxSize (file) {
                 this.$Notice.warning({
                     title: 'Exceeding file size limit',
                     desc: 'File  ' + file.name + ' is too large, no more than 2M.'
                 })
             },
-            handleBeforeUpload() {
+            handleBeforeUpload () {
                 const check = this.uploadList.length < 1
                 if (!check) {
                     this.$Notice.warning({
@@ -123,12 +127,12 @@
                 }
                 return check
             },
-            addGoods() {
+            addGoods () {
                 try {
                     this.form.productImage = this.uploadList[0].response.result.filePath
                     this.form.productId = this.uploadList[0].name
                 } catch (e) {
-                    this.$Message.error("请上传图片")
+                    this.$Message.error('请上传图片')
                     return
                 }
                 addGoods(this.form).then(res => {
@@ -145,20 +149,20 @@
                     }
                 })
             },
-            updateGoods() {
+            updateGoods () {
                 updateGoods(this.form).then(res => {
                     let data = res.data
-                    if (data.status === 0){
-                        this.$Message.success("修改成功")
-                        this.$emit("close")
+                    if (data.status === 0) {
+                        this.$Message.success('修改成功')
+                        this.$emit('close')
                         this.refreshPage()
                     }
                 })
             },
-            refreshPage() {
+            refreshPage () {
                 this.$emit('init')
             },
-            init() {
+            init () {
                 if (this.productInfo) {
                     this.form = this.productInfo
                     this.defaultList = [
@@ -173,7 +177,7 @@
         watch: {
             'productInfo': 'init'
         },
-        mounted() {
+        mounted () {
             this.uploadList = this.$refs.upload.fileList
         }
     }

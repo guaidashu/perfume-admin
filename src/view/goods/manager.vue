@@ -21,7 +21,8 @@
             </div>
         </Modal>
         <Modal v-model="updateModal" title="修改商品信息">
-            <upload-goods :product-info="productInfo" @close="closeModal('update')" @init="init" ref="updateGoods"></upload-goods>
+            <upload-goods :product-info="productInfo" @close="closeModal('update')" @init="init"
+                          ref="updateGoods"></upload-goods>
             <div slot="footer">
                 <Button type="primary" size="large" @click="updateGoods">确认修改</Button>
                 <Button type="error" size="large" @click="closeModal('update')">关闭</Button>
@@ -94,24 +95,35 @@
             },
             showModal (flag) {
                 switch (flag) {
-                    case 'upload': this.addGoodsModal = true; break;
-                    case 'update': this.updateModal = true; break;
+                    case 'upload':
+                        this.addGoodsModal = true
+                        break
+                    case 'update':
+                        this.updateModal = true
+                        break
                 }
             },
-            initUpdateModal(row) {
+            initUpdateModal (row) {
                 this.showModal('update')
-                this.productInfo = row
+                if (!row.productType) {
+                    row.productType = ''
+                }
+                this.productInfo = Object.assign({}, row)
             },
             closeModal (flag) {
                 switch (flag) {
-                    case 'upload': this.addGoodsModal = false; break;
-                    case 'update': this.updateModal = false; break;
+                    case 'upload':
+                        this.addGoodsModal = false
+                        break
+                    case 'update':
+                        this.updateModal = false
+                        break
                 }
             },
             addGoods () {
                 this.$refs.uploadGoods.addGoods()
             },
-            updateGoods() {
+            updateGoods () {
                 this.$refs.updateGoods.updateGoods()
             }
         },

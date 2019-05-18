@@ -7,6 +7,16 @@
             <FormItem label="商品价格" prop="salePrice">
                 <Input type="text" v-model="form.salePrice"></Input>
             </FormItem>
+            <FormItem label="商品类型">
+                <Select v-model="form.productType">
+                    <Option v-for="(row, index) in types" :key="index" :value="row._id"
+                            v-if="row._id === form.productType">{{row.name}}
+                    </Option>
+                    <Option v-for="(row, index) in types" :key="index" :value="row._id"
+                            v-if="row._id !== form.productType">{{row.name}}
+                    </Option>
+                </Select>
+            </FormItem>
             <FormItem label="商品描述" prop="productDescription">
                 <Input v-model="form.productDescription" type="textarea" placeholder="输入商品描述..."></Input>
             </FormItem>
@@ -44,7 +54,7 @@
 </template>
 
 <script>
-    import { addGoods, updateGoods } from '../../../api/goods'
+    import { addGoods, getTypeAllData, updateGoods } from '../../../api/goods'
 
     export default {
         props: ['productInfo'],
@@ -65,12 +75,14 @@
                 }
             }
             return {
+                types: [],
                 form: {
                     productName: '',
                     salePrice: 0,
                     productImage: [],
                     productId: '',
-                    productDescription: ''
+                    productDescription: '',
+                    productType: '',
                 },
                 formRule: {
                     productName: [
@@ -172,6 +184,15 @@
                         }
                     ]
                 }
+                this.getTypeAllData()
+            },
+            getTypeAllData () {
+                getTypeAllData().then(res => {
+                    let data = res.data
+                    if (data.status === 0) {
+                        this.types = data.result
+                    }
+                })
             }
         },
         watch: {
@@ -179,6 +200,7 @@
         },
         mounted () {
             this.uploadList = this.$refs.upload.fileList
+            this.getTypeAllData()
         }
     }
 </script>

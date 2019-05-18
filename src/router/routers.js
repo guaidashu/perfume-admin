@@ -90,6 +90,56 @@ export default [
             }
         ]
     },
+    {
+        path: '/type',
+        name: 'type',
+        meta: {
+            "title": '类型',
+            'icon': 'md-person'
+        },
+        component: Main,
+        children: [
+            {
+                path: 'typeUpload',
+                name: 'typeUpload',
+                meta: {
+                    icon: 'md-person',
+                    title: '类型上传',
+                    beforeCloseName: 'before_close_normal'
+                },
+                component: () => import("@/view/type/typeUpload")
+            },
+            {
+                path: 'typeManager',
+                name: 'typeManager',
+                meta: {
+                    icon: 'md-person',
+                    title: '类型管理',
+                    beforeCloseName: 'before_close_normal'
+                },
+                component: () => import("@/view/type/typeManager")
+            }
+        ]
+    },
+    {
+        path: '/system',
+        name: 'system',
+        component: Main,
+        meta: {
+            title: '系统'
+        },
+        children: [
+            {
+                path: 'changePassword',
+                name: 'changePassword',
+                meta: {
+                    title: '修改密码',
+                    icon: 'md-person'
+                },
+                component: () => import('@/view/system/changePassword')
+            }
+        ]
+    },
     // {
     //     path: '',
     //     name: 'doc',

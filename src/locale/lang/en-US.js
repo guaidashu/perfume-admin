@@ -5,5 +5,10 @@ export default {
     goods_manager: 'goods manager',
     goods: 'goods',
     users_manager: 'users manager',
-    users: 'users'
+    users: 'users',
+    type: 'type',
+    typeUpload: 'type upload',
+    typeManager: 'type manager',
+    system: 'system',
+    changePassword: 'change password'
 }

@@ -83,6 +83,7 @@
             },
             showModal (row) {
                 this.form = Object.assign({}, row)
+                console.log(row)
                 this.typeModal = true
             },
             closeModal () {

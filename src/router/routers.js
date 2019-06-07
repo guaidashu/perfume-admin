@@ -128,17 +128,17 @@ export default [
         meta: {
             title: '系统'
         },
-        children: [
-            {
-                path: 'changePassword',
-                name: 'changePassword',
-                meta: {
-                    title: '修改密码',
-                    icon: 'md-person'
-                },
-                component: () => import('@/view/system/changePassword')
-            }
-        ]
+        // children: [
+        //     {
+        //         path: 'changePassword',
+        //         name: 'changePassword',
+        //         meta: {
+        //             title: '修改密码',
+        //             icon: 'md-person'
+        //         },
+        //         component: () => import('@/view/system/changePassword')
+        //     }
+        // ]
     },
     // {
     //     path: '',

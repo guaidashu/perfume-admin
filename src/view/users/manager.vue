@@ -4,6 +4,7 @@
         </Button>
         <div style="width: 100%; height: 15px;"></div>
         <Table :loading="loading" :data="userData.docs" :columns="userColumns">
+<!--            iview组件-->
             <template slot-scope="{row, index}" slot="action">
                 <Button type="error" size="small" @click="deleteUser(row)">删除</Button>
                 <Button type="primary" size="small" style="margin-left: 10px;" @click="showModal(row)">修改密码

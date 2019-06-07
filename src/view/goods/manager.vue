@@ -5,12 +5,14 @@
         </Button>
         <div style="width: 100%; height: 15px;"></div>
         <Table :data="goodsData.docs" :columns="goodsColumns" :loading="loading">
+<!--            iview组件-->
             <template slot-scope="{row, index}" slot="action">
                 <Button type="error" size="small" @click="deleteGoods(row)">删除</Button>
                 <Button type="primary" size="small" style="margin-left: 10px;" @click="initUpdateModal(row)">修改</Button>
             </template>
         </Table>
         <div style="width: 100%; height: 15px;"></div>
+<!--        分页-->
         <Page :total="goodsData.total" :page-size="goodsData.limit" :current="goodsData.page"
               @on-change="(p) => {this.page=p}"></Page>
         <Modal v-model="addGoodsModal" title="添加商品信息">
@@ -93,6 +95,7 @@
                     }
                 })
             },
+            //显示模态窗
             showModal (flag) {
                 switch (flag) {
                     case 'upload':
@@ -110,7 +113,8 @@
                 }
                 this.productInfo = Object.assign({}, row)
             },
-            closeModal (flag) {
+                //关闭模态窗
+                closeModal (flag) {
                 switch (flag) {
                     case 'upload':
                         this.addGoodsModal = false
@@ -120,6 +124,7 @@
                         break
                 }
             },
+            //新增商品
             addGoods () {
                 this.$refs.uploadGoods.addGoods()
             },
